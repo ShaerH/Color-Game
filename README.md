@@ -1,2 +1,2 @@
 # Color Game
-A game to understanding RGB colors
+A game of understanding RGB colors
