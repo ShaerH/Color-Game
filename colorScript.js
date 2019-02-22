@@ -1,9 +1,12 @@
-var colors = generateRandomColors(6);
+var numSquare = 6;
+var colors = generateRandomColors(numSquare);
 var colorDisplay = document.getElementById("colorDisplay");
 var messageDisplay = document.querySelector("#message");
 var pickedColor = colors[Math.floor(Math.random()*colors.length)];
 var h1 = document.querySelector("h1");
 var resetButton = document.querySelector("#reset");
+var easyButton = document.querySelector("#easy");
+var hardButton = document.querySelector("#hard");
 
 colorDisplay.textContent = pickedColor;
 var squares = document.querySelectorAll(".square");
@@ -60,11 +63,44 @@ function randomColor() {
     return rgb;
 }
 resetButton.addEventListener("click", function () {
-    colors = generateRandomColors(6);
+    colors = generateRandomColors(numSquare);
     pickedColor = colors[Math.floor(Math.random()*colors.length)];
     colorDisplay.textContent = pickedColor;
     for (var i = 0; i< squares.length; i++){
         squares[i].style.backgroundColor = colors[i];
     }
     h1.style.backgroundColor = "darkgray";
+});
+
+easyButton.addEventListener("click", function () {
+    numSquare = 3;
+    easyButton.classList.add("selected");
+    hardButton.classList.remove("selected");
+    colors = generateRandomColors(numSquare);
+    pickedColor = colors[Math.floor(Math.random()*colors.length)];
+    colorDisplay.textContent = pickedColor;
+    for (var i = 0; i< squares.length; i++){
+        if(colors[i]){
+            squares[i].style.backgroundColor = colors[i];
+        } else{
+            squares[i].style.display= "none";
+        }
+    }
+
+});
+
+hardButton.addEventListener("click", function () {
+    numSquare = 6;
+    easyButton.classList.remove("selected");
+    hardButton.classList.add("selected");
+    colors = generateRandomColors(numSquare);
+    pickedColor = colors[Math.floor(Math.random()*colors.length)];
+    colorDisplay.textContent = pickedColor;
+    for (var i = 0; i< squares.length; i++){
+
+            squares[i].style.backgroundColor = colors[i];
+
+            squares[i].style.display= "block";
+
+    }
 });
